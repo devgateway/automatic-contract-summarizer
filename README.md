@@ -33,7 +33,7 @@ If you have newer, bigger GPU or a cloud server then this code can be scaled up 
 ## How to use the code
 
 ### Folder structure
-Inside directory /src/HC/src we have several folders:
+Inside directory /src we have several folders:
 - **common:** util classes used to preprocess documents, cleanup outputs, unify results, connect to a database, etc.
 - **facebook / google folders:** each one contains the code to fine-tune and test a different model, in our case we found the best relation between **model size & accuracy** in **google_flan_t5_base** and that's the model we will talk about from now on.
 
@@ -95,7 +95,7 @@ Everything can run **locally** or inside a **CUDA-enabled Docker container**.
 | Core ML stack           | **PyTorch ≥ 2.0** (with CUDA if you have an NVIDIA GPU) |
 | Transformers & datasets | `transformers ≥ 4.40`, `datasets`                       |
 | Data helpers            | `pandas`, `python-docx`, `PyPDF2`                       |
-| Your project utils      | `src.HC.src.common.*` must be importable                |
+| Your project utils      | `src.common.*` must be importable                |
 
 Install locally:
 
