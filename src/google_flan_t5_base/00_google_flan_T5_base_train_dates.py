@@ -57,7 +57,6 @@ training_args = TrainingArguments(
 )
 
 # Initialize the T5 model
-model = T5ForConditionalGeneration.from_pretrained(model_name)
 
 # Initialize the Trainer with model, tokenizer, arguments, and datasets
 trainer = Trainer(
