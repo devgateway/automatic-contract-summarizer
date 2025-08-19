@@ -29,8 +29,8 @@ temperature = 0.7
 
 ############################################################################
 # REMEMBER NEVER USE THE SAME FILE FOR TRAINING AND TESTING!!!
-new_docx = "new_contract_not_used_for_training.pdf"
-predict_from_pdf(new_docx, prompt, model, tokenizer, max_length_param, device, log_source_file=log_source_file,
+new_pdf = "new_contract_not_used_for_training.pdf"
+predict_from_pdf(new_pdf, prompt, model, tokenizer, max_length_param, device, log_source_file=log_source_file,
                  skip_ai=skip_ai, chunk_size_characters=chunk_size_characters, normalize_lowercase=normalize_lowercase,
                  num_beams=num_beams, do_sample=do_sample, temperature=temperature)
 
