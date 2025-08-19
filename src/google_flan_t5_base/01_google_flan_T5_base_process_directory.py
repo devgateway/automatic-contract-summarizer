@@ -3,6 +3,7 @@ from transformers import T5Tokenizer, T5ForConditionalGeneration
 from pathlib import Path
 from src.common.training_utils import predict_from_pdf, predict_from_docx
 
+# It's important to match the multiplier used during training.
 multiplier = 2
 max_length_param = 512 * multiplier
 PRE_TRAINED_DIRECTORY = r".\fine-tuned-model_flan_t5_base_step_1_" + str(max_length_param)
