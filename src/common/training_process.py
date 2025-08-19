@@ -91,6 +91,9 @@ def tokenize_training_data(files, training_texts, prompt, chunk_size_characters,
 
 def preprocess_function(examples, tokenizer, max_length_param, device="cuda"):
     print("preprocess_function")
+    # Ensure device is available
+    if device == "cuda" and not torch.cuda.is_available():
+        device = "cpu"
     inputs = [ex for ex in examples["input_text"]]
     outputs = [str(ex) for ex in examples["output_json"]]
 
