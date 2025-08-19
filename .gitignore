@@ -1,3 +1,4 @@
 src/common/__pycache__/
 src/google_flan_t5_base/fine-tuned-model_flan_t5_base_step_0/
 src/google_flan_t5_base/fine-tuned-model_flan_t5_base_step_1_1024/
+.idea/
