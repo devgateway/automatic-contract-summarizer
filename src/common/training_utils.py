@@ -3,7 +3,7 @@ import re
 import sys
 from collections import defaultdict
 
-from src.common.extraction_utils import html_to_text, pdf_to_text, docx_to_text
+from src.common.extraction_utils_open_source import html_to_text, pdf_to_text, docx_to_text
 from src.common.post_process import string_exists
 
 

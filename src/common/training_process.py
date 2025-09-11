@@ -1,10 +1,11 @@
 import random
 from functools import partial
 
+import torch
 from sklearn.model_selection import train_test_split
 
 from src.common.dataset_utils import prepare_dataset
-from src.common.extraction_utils import html_to_text, docx_to_text, pdf_to_text
+from src.common.extraction_utils_open_source import html_to_text, docx_to_text, pdf_to_text
 from src.common.training_utils import split_text_into_chunks, detect_data_for_training
 
 

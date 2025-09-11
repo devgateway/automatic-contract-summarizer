@@ -14,7 +14,6 @@ files, training_texts = prepare_training_tuples_from_directory(DB_DIRECTORY)
 ############################################################################
 # Load pre-trained model and tokenizer
 model_name = "./fine-tuned-model_flan_t5_base_step_0"  # You can choose a different model as needed
-# model_name = "google/flan-t5-base"
 tokenizer = T5Tokenizer.from_pretrained(model_name)
 model = T5ForConditionalGeneration.from_pretrained(model_name, device_map="auto")
 device = "cuda" if torch.cuda.is_available() else "cpu"
