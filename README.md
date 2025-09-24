@@ -192,4 +192,4 @@ Remember to run `black` and `ruff` before submitting code.
 
 ## 📄 License
 
-MIT License – see `LICENSE` for details.
+Apache-2.0 license – see `LICENSE` for details.
