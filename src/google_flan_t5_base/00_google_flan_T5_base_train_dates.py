@@ -44,7 +44,7 @@ def preprocess_function(examples):
 
 # Apply preprocessing to the dataset
 tokenized_dataset = dataset.map(preprocess_function, batched=True)
-split = tokenized_dataset.train_test_split(test_size=0.2, seed=42)
+split = tokenized_dataset.train_test_split(test_size=0.1, seed=42)
 train_dataset = split["train"]
 eval_dataset = split["test"]
 
