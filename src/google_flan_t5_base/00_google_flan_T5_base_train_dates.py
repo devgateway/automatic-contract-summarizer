@@ -1,5 +1,6 @@
 import pandas as pd
 from datasets import Dataset
+from sklearn.model_selection import train_test_split
 from transformers import T5Tokenizer, T5ForConditionalGeneration, Seq2SeqTrainer, Seq2SeqTrainingArguments, Trainer, \
     TrainingArguments
 import torch
@@ -31,11 +32,11 @@ def preprocess_function(examples):
     targets = examples["expected_output"]
 
     # Tokenize inputs and targets
-    model_inputs = tokenizer(inputs, max_length=512, truncation=True, padding="max_length")
+    model_inputs = tokenizer(inputs, max_length=128, truncation=True, padding="max_length")
 
     # Tokenize the target labels separately as T5 needs target tokenization as well
     with tokenizer.as_target_tokenizer():
-        labels = tokenizer(targets, max_length=512, truncation=True, padding="max_length")
+        labels = tokenizer(targets, max_length=128, truncation=True, padding="max_length")
 
     model_inputs["labels"] = labels["input_ids"]
     return model_inputs
@@ -43,15 +44,18 @@ def preprocess_function(examples):
 
 # Apply preprocessing to the dataset
 tokenized_dataset = dataset.map(preprocess_function, batched=True)
+split = tokenized_dataset.train_test_split(test_size=0.2, seed=42)
+train_dataset = split["train"]
+eval_dataset = split["test"]
 
 # Define training arguments
 training_args = TrainingArguments(
     output_dir="./results",
     # evaluation_strategy="epoch",
     learning_rate=3e-4,
-    per_device_train_batch_size=5,  # the bigger the number, it consumes more VRAM.
-    per_device_eval_batch_size=5,  # the bigger the number, it consumes more VRAM.
     num_train_epochs=5,
+    per_device_train_batch_size=3,  # the bigger the number, it consumes more VRAM.
+    per_device_eval_batch_size=3,  # the bigger the number, it consumes more VRAM.
     weight_decay=0.01,
     logging_dir='./logs'
 )
@@ -62,8 +66,8 @@ training_args = TrainingArguments(
 trainer = Trainer(
     model=model,
     args=training_args,
-    train_dataset=tokenized_dataset,
-    eval_dataset=tokenized_dataset,  # Optional: split dataset for separate evaluation
+    train_dataset=train_dataset,
+    eval_dataset=eval_dataset,  # Optional: split dataset for separate evaluation
     tokenizer=tokenizer,
 )
 
